@@ -158,7 +158,18 @@ export default function App() {
           onClick={downloadCsv}
           className="border border-black px-6 py-2 bg-white hover:bg-gray-100 mb-2"
         >
-          Export CSV
+          <button
+  onClick={() => {
+    if (!hasPaid) {
+      alert("Export requires payment.");
+      return;
+    }
+    downloadCsv();
+  }}
+  className="border border-black px-6 py-2 bg-white 
+hover:bg-gray-100 mb-2"
+>
+  Export CSV
         </button>
 
         <p className="text-gray-600">
