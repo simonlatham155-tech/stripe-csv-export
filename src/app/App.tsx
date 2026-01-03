@@ -150,7 +150,8 @@ export default function App() {
           </table>
         </div>
 
-        <p className="mb-6 text-gray-600">Preview only. Export requires payment.</p>
+        <p className="mb-6 text-gray-600"><p className="mb-6 text-gray-600">
+          Preview only. Export requires payment.</p>
 
       
 
