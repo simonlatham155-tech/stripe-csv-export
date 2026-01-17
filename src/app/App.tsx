@@ -155,11 +155,30 @@ export default function App() {
       
 
         <button
-          onClick={() => alert("Export requires payment.")}
-          className="border border-black px-6 py-2 bg-white hover:bg-gray-100 mb-2"
-        >
-          Export CSV
-        </button>
+          onClick={async () => {
+            try {
+              const res = await fetch("/api/create-checkout-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ priceId: "price_1Sqb6Q8ALY42Thzgw48VNZmp" }),
+               });
+
+               const data = await res.json();
+
+               if (!res.ok) {
+                 alert(data?.error || "Checkout failed");
+                 return;
+                }
+
+                window.location.href = data.url;
+              } catch {
+                alert("Checkout error");
+              }
+            }}
+            className="border border-black px-6 py-2 bg-white hover:bg-gray-100 mb-2"
+           >
+            Export CSV
+           </button>
 
         <p className="text-gray-600">
           $5/month. Cancel anytime. No Stripe data stored.
